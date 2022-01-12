@@ -1,12 +1,19 @@
 # Snow Camera
+detect 68 face landmarks in Real-time
+
 ---
 ### Goal
-사람 얼굴을 인식해서 라이언 얼굴 띄우기
+실시간 또는 영상에서 사람의 얼굴을 인식해서 라이언 얼굴 띄우기
 
-### Library
-1. [OpenCV (cv2)](https://076923.github.io/posts/Python-opencv-1/) : 이미지 처리
-2. [Dlib](http://blog.dlib.net/) : 얼굴 인식
-3. numpy : 행렬 연산
+### Dependency
+
+1. Python 3
+2. [OpenCV (cv2)](https://076923.github.io/posts/Python-opencv-1/) : 이미지 처리
+3. [Dlib](http://blog.dlib.net/) : 얼굴 인식
+4. numpy : 행렬 연산
+
+### Model
+[68 face landmark model](https://github.com/davisking/dlib-models/blob/master/shape_predictor_68_face_landmarks.dat.bz2)
 
 ### Data
 인물 동영상
@@ -42,3 +49,7 @@ if len(faces) == 0:
       ...
   ```
 4. <i>결과물을 gif 움짤로 저장하는 방법?</i>
+
+### Reference
+1. [`빵형의 개발도상국`님의 유튜브 영상](https://www.youtube.com/watch?v=tpWVyJqehG4&t=2s)
+2. [`kairess`님의 github](https://github.com/kairess/face_detector)
