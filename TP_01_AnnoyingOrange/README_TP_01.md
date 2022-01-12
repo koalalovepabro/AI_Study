@@ -15,6 +15,3 @@
 ### Study
 1. face landmark  
 ![image](https://blog.kakaocdn.net/dn/baNXvY/btqChGYfEU4/l59Bgkbdir5CQ4wdDqZIw0/img.png)
-
-### Questions
-
