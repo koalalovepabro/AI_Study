@@ -3,15 +3,13 @@ import mediapipe as mp
 import numpy as np
 
 # 인식할 손의 최대 갯수 (기본값: 2)
-max_num_hands = 1
+max_num_hands = 2
 
 # 제스처 저장 ( 손가락 관절의 각도와 각각의 label)
 gesture = {
     0: 'fist', 1:'one', 2:'two', 3:'three', 4:'four', 5:'five',
-    6:'six', 7:'rock', 8:'spiderman', 9:'yeah', 10:'ok'
+    6:'six', 7:'rock', 8:'spiderman', 9:'yeah', 10:'ok', 12:'heart'
 }
-# 가위바위보(RPS) 제스처 저장
-rps_gesture = {0:'rock', 5:'paper', 9:'scissors', 2:'scissors'}  # R-P-S
 
 # MediaPipe hands model
 mp_hands = mp.solutions.hands             # 손가락을 인식해서 뼈마디를 그려주는 기능
@@ -22,7 +20,7 @@ hands = mp_hands.Hands(                   # 손가락 인식 모듈 초기화
     min_tracking_confidence = 0.5)        # landmark가 성공적으로 추적된 것으로 간주되는 landmark tracking 모델의 최소 신뢰도 값 [0.0,1.0]
 
 # Gesture recognition model
-file = np.genfromtxt('data/gesture_train_scissors.csv', delimiter=',')
+file = np.genfromtxt('data/gesture_train_heart.csv', delimiter=',')
 angle = file[:, :-1].astype(np.float32)     # angle: 모든 행 , 가장 마지막 열을 제외한 값
 label = file[:, -1].astype(np.float32)      # label: 모든 행 , 가장 마지막 열의 값
 knn = cv2.ml.KNearest_create()              # KNN 알고리즘
@@ -79,23 +77,25 @@ while cap.isOpened():
             ret, results, neighbors, dist = knn.findNearest(data, 3)  # k=3 일때의 값 구하기
             idx = int(results[0][0]) # results의 첫번째 인덱스 저장
 
-            # Draw gesture result (RPS)
-            if idx in rps_gesture.keys():  # 만약 인덱스가 RPS(가위바위보) 중 하나라면
-                cv2.putText(img, text=rps_gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]),
+            # 제스처 모델에서 추론한 결과가 heart(label=12) 일때
+            if idx == 12 :
+                cv2.putText(img, text=gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]),
                                                                      int(res.landmark[0].y * img.shape[0] + 20)),
-                            fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255,255,255), thickness=2)
+                            fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
 
-            # # Draw gesture result (other)
-            # cv2.putText(img, text=gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]),
-            #                                                  int(res.landmark[0].y * img.shape[0] + 20)),
-            #             fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255,255,255), thickness=2)
+                # 손 landmark의 사각형 바운딩박스 구하기
+                x1, y1 = tuple((joint.min(axis=0)[:2] * [img.shape[1], img.shape[0]] * 0.9).astype(int))
+                x2, y2 = tuple((joint.max(axis=0)[:2] * [img.shape[1], img.shape[0]] * 1.1).astype(int))
+
+                # 사각형 바운딩박스를 초록색으로 표시
+                cv2.rectangle(img, pt1=(x1, y1), pt2 = (x2, y2), color=(0, 255, 0), thickness=2)
 
             # 손가락 마디마디에 landmark 그리기
             mp_drawing.draw_landmarks(img, res, mp_hands.HAND_CONNECTIONS)
 
-    cv2.imshow('Game', img)
+    cv2.imshow('Filter', img)
     if cv2.waitKey(1) == ord('q'):
         break
 
     # 결과 이미지 저장
-    cv2.imwrite("output/output_single.jpg", img[:])
+    cv2.imwrite("output/output_heart_filter.jpg", img[:])

@@ -3,7 +3,7 @@ import mediapipe as mp
 import numpy as np
 
 # 인식할 손의 최대 갯수 (기본값: 2)
-max_num_hands = 1
+max_num_hands = 2
 
 # 제스처 저장 ( 손가락 관절의 각도와 각각의 label)
 gesture = {
@@ -45,13 +45,15 @@ while cap.isOpened():
 
     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)  # RGB -> BGR (이미지를 OpenCV로 출력해야 하니까 다시 변환)
 
-    if result.multi_hand_landmarks is not None:    # 손을 인식했다면,
-        for res in result.multi_hand_landmarks:   # 여러개의 손을 인식할 수 있기때문에 for문 사용
-            joint = np.zeros((21, 3))             # 빨간 점으로 표시되는 각 마디(joint)의 좌표(x,y,z) 저장
-                                                  # np.zeros((21,3)) : 21개의 조인트, x,y,z 3개의 좌표
+    if result.multi_hand_landmarks is not None:
+        rps_result = []   # 가위바위보 게임 결과와 손의 landmark 저장
+
+        for res in result.multi_hand_landmarks:  # 여러개의 손을 인식할 수 있기때문에 for문 사용
+            joint = np.zeros((21, 3))  # 빨간 점으로 표시되는 각 마디(joint)의 좌표(x,y,z) 저장
+            # np.zeros((21,3)) : 21개의 조인트, x,y,z 3개의 좌표
             # print(joint)
-            for j, lm in enumerate(res.landmark): # 각 joint마다 landmark저장
-                joint[j] = [lm.x, lm.y, lm.z]     # landmark의 x,y,z 좌표를 각 joint에 저장. (21,3)의 array가 생성됨
+            for j, lm in enumerate(res.landmark):  # 각 joint마다 landmark저장
+                joint[j] = [lm.x, lm.y, lm.z]  # landmark의 x,y,z 좌표를 각 joint에 저장. (21,3)의 array가 생성됨
 
             # compute angles between joints  ( 관절마다 벡터값 구하기 )
             v1 = joint[[0, 1, 2, 3, 0, 5, 6, 7, 0, 9, 10, 11, 0, 13, 14, 15, 0, 17, 18, 19], :]  # Parent joint
@@ -66,8 +68,8 @@ while cap.isOpened():
             # 위에서 벡터의 크기를 모두 1로 표준화시켰기 때문에, 두 벡터의 내적값 = 두 벡터가 이루는 각의 cos값
             # 따라서 이것을 cos역함수인 arccos에 대입하면 두 벡터가 이루는 각을 구할 수 있음
             angle = np.arccos(np.einsum('nt,nt->n',
-                                        v[[0,1,2,4,5,6,8,9,10,12,13,14,16,17,18], :],
-                                        v[[1,2,3,5,6,7,9,10,11,13,14,15,17,18,19], :]
+                                        v[[0, 1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17, 18], :],
+                                        v[[1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 17, 18, 19], :]
                                         ))  # [15, ] 15개의 angle이 계산됨 (radian값으로 계산됨)
 
             # convert radian to degree
@@ -77,25 +79,72 @@ while cap.isOpened():
             # Inference gesture (제스처 추론)
             data = np.array([angle], dtype=np.float32)
             ret, results, neighbors, dist = knn.findNearest(data, 3)  # k=3 일때의 값 구하기
-            idx = int(results[0][0]) # results의 첫번째 인덱스 저장
+            idx = int(results[0][0])  # results의 첫번째 인덱스 저장
 
             # Draw gesture result (RPS)
             if idx in rps_gesture.keys():  # 만약 인덱스가 RPS(가위바위보) 중 하나라면
-                cv2.putText(img, text=rps_gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]),
-                                                                     int(res.landmark[0].y * img.shape[0] + 20)),
-                            fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255,255,255), thickness=2)
+                org = (int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0]))
 
-            # # Draw gesture result (other)
-            # cv2.putText(img, text=gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]),
-            #                                                  int(res.landmark[0].y * img.shape[0] + 20)),
-            #             fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255,255,255), thickness=2)
+                cv2.putText(img, text=rps_gesture[idx].upper(), org=(org[0], org[1] + 20),
+                            fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
+
+                rps_result.append({
+                    'rps' : rps_gesture[idx],    # gesture가 무엇인지 저장 ( Rock, Paper, Scissors )
+                    'org' : org                  # 2개 손의 위치 저장
+                })
 
             # 손가락 마디마디에 landmark 그리기
             mp_drawing.draw_landmarks(img, res, mp_hands.HAND_CONNECTIONS)
+
+            # Who wins?
+            if len(rps_result) >= 2:   # 손이 2개 이상일 경우, 아래 코드 실행
+                winner = None
+                text = ''
+
+                # Rock vs ?
+                if rps_result[0]['rps'] == 'rock':
+                    if rps_result[1]['rps'] == 'rock':
+                        text = 'Tie'
+                    elif rps_result[1]['rps'] == 'paper':
+                        text = 'Paper Wins'
+                        winner = 1
+                    elif rps_result[1]['rps'] == 'scissors':
+                        text = 'Rock Wins'
+                        winner = 0
+
+                # Paper vs ?
+                elif rps_result[0]['rps'] == 'paper':
+                    if rps_result[1]['rps'] == 'rock':
+                        text = 'Paper Wins'
+                        winner = 0
+                    elif rps_result[1]['rps'] == 'paper':
+                        text = 'Tie'
+                    elif rps_result[1]['rps'] == 'scissors':
+                        text = 'Scissors Wins'
+                        winner = 1
+
+                # Scissors vs ?
+                elif rps_result[0]['rps'] == 'scissors':
+                    if rps_result[1]['rps'] == 'rock':
+                        text = 'Rock Wins'
+                        winner = 1
+                    elif rps_result[1]['rps'] == 'paper':
+                        text = 'Scissors Wins'
+                        winner = 0
+                    elif rps_result[1]['rps'] == 'scissors':
+                        text = 'Tie'
+
+                # 누가 이겼는지 표시
+                # Winner가 존재할 때 (승/패가 있을 경우)
+                if winner is not None:
+                    cv2.putText(img, text='Winner', org=(rps_result[winner]['org'][0], rps_result[winner]['org'][1] + 70),
+                                fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0, 255, 0), thickness=3)
+                # 비겼을 때
+                cv2.putText(img, text=text, org=(int(img.shape[1]/2), 100), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0, 0, 255), thickness=3)
 
     cv2.imshow('Game', img)
     if cv2.waitKey(1) == ord('q'):
         break
 
     # 결과 이미지 저장
-    cv2.imwrite("output/output_single.jpg", img[:])
+    cv2.imwrite("output/output_dual.jpg", img[:])

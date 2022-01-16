@@ -1,3 +1,5 @@
+# TP_02_Rock-Paper-Scissors Machine의 'single.py' 코드 기반
+# 손가락 마디의 각도 계산하는 부분만 남겨둠
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -5,13 +7,11 @@ import numpy as np
 # 인식할 손의 최대 갯수 (기본값: 2)
 max_num_hands = 1
 
-# 제스처 저장 ( 손가락 관절의 각도와 각각의 label)
+# 제스처의 클래스 저장 ( 손가락 관절의 각도와 각각의 label)
 gesture = {
     0: 'fist', 1:'one', 2:'two', 3:'three', 4:'four', 5:'five',
-    6:'six', 7:'rock', 8:'spiderman', 9:'yeah', 10:'ok'
+    6:'six', 7:'rock', 8:'spiderman', 9:'yeah', 10:'ok', 11:'fy' # 11번에 fsck you 제스처 저장
 }
-# 가위바위보(RPS) 제스처 저장
-rps_gesture = {0:'rock', 5:'paper', 9:'scissors', 2:'scissors'}  # R-P-S
 
 # MediaPipe hands model
 mp_hands = mp.solutions.hands             # 손가락을 인식해서 뼈마디를 그려주는 기능
@@ -22,14 +22,25 @@ hands = mp_hands.Hands(                   # 손가락 인식 모듈 초기화
     min_tracking_confidence = 0.5)        # landmark가 성공적으로 추적된 것으로 간주되는 landmark tracking 모델의 최소 신뢰도 값 [0.0,1.0]
 
 # Gesture recognition model
-file = np.genfromtxt('data/gesture_train_scissors.csv', delimiter=',')
-angle = file[:, :-1].astype(np.float32)     # angle: 모든 행 , 가장 마지막 열을 제외한 값
-label = file[:, -1].astype(np.float32)      # label: 모든 행 , 가장 마지막 열의 값
-knn = cv2.ml.KNearest_create()              # KNN 알고리즘
-knn.train(angle, cv2.ml.ROW_SAMPLE, label)  # angle, label 데이터를 가지고 knn 알고리즘 학습
+file = np.genfromtxt('data/gesture_train.csv', delimiter=',')  # 데이터 갯수: 110개
 
 # 웹캠의 이미지 읽어오기
 cap = cv2.VideoCapture(0)
+
+# 클릭했을때 실행할 함수
+# 클릭했을 때 현재 각도 data를 원본 file에 추가
+def click(event, x, y, flags, param):
+    global data, file
+    if event == cv2.EVENT_LBUTTONDOWN:
+        file = np.vstack((file, data))
+        print(file.shape)
+    # if event == cv2.EVENT_LBUTTONDOWN:
+    #     file = np.vstack((file, data))
+    #     print(file.shape)
+
+# 화면을 클릭해을 때만 데이터 저장 (openCV click event)
+cv2.namedWindow('Dataset')
+cv2.setMouseCallback('Dataset', click)
 
 while cap.isOpened():
     ret, img = cap.read()  # 웹캠에서 프레임 하나씩 읽어옴
@@ -49,7 +60,6 @@ while cap.isOpened():
         for res in result.multi_hand_landmarks:   # 여러개의 손을 인식할 수 있기때문에 for문 사용
             joint = np.zeros((21, 3))             # 빨간 점으로 표시되는 각 마디(joint)의 좌표(x,y,z) 저장
                                                   # np.zeros((21,3)) : 21개의 조인트, x,y,z 3개의 좌표
-            # print(joint)
             for j, lm in enumerate(res.landmark): # 각 joint마다 landmark저장
                 joint[j] = [lm.x, lm.y, lm.z]     # landmark의 x,y,z 좌표를 각 joint에 저장. (21,3)의 array가 생성됨
 
@@ -76,26 +86,16 @@ while cap.isOpened():
 
             # Inference gesture (제스처 추론)
             data = np.array([angle], dtype=np.float32)
-            ret, results, neighbors, dist = knn.findNearest(data, 3)  # k=3 일때의 값 구하기
-            idx = int(results[0][0]) # results의 첫번째 인덱스 저장
 
-            # Draw gesture result (RPS)
-            if idx in rps_gesture.keys():  # 만약 인덱스가 RPS(가위바위보) 중 하나라면
-                cv2.putText(img, text=rps_gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]),
-                                                                     int(res.landmark[0].y * img.shape[0] + 20)),
-                            fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255,255,255), thickness=2)
-
-            # # Draw gesture result (other)
-            # cv2.putText(img, text=gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]),
-            #                                                  int(res.landmark[0].y * img.shape[0] + 20)),
-            #             fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255,255,255), thickness=2)
+            # 각도 데이터의 마지막에 label 11 추가
+            data = np.append(data, 11)
 
             # 손가락 마디마디에 landmark 그리기
             mp_drawing.draw_landmarks(img, res, mp_hands.HAND_CONNECTIONS)
 
-    cv2.imshow('Game', img)
+    cv2.imshow('Dataset', img)
     if cv2.waitKey(1) == ord('q'):
         break
 
-    # 결과 이미지 저장
-    cv2.imwrite("output/output_single.jpg", img[:])
+# 수집한 데이터를 csv 파일로 저장
+np.savetxt('data/gesture_train_fy.csv', file, delimiter=',')
