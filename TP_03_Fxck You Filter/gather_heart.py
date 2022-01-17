@@ -34,9 +34,6 @@ def click(event, x, y, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN:
         file = np.vstack((file, data))
         print(file.shape)
-    # if event == cv2.EVENT_LBUTTONDOWN:
-    #     file = np.vstack((file, data))
-    #     print(file.shape)
 
 # 화면을 클릭해을 때만 데이터 저장 (openCV click event)
 cv2.namedWindow('Dataset')
