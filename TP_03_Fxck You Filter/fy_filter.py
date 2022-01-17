@@ -90,9 +90,15 @@ while cap.isOpened():
 
                 # 사각형 영역을 잘라서 fy_img에 복사
                 fy_img = img[y1:y2, x1:x2].copy()
+
                 # 이미지의 크기를 0.05배로 작게 만듦
+                # 배율이 작아질수록 모자이크 픽셀의 크기가 커짐(더 큰 비율로 축소했다가 다시 확대하니 픽셀이 많이 깨짐)
+                # 절대크기 인수(dsize): 축소 후 사이즈를 지정하지 않고 None을 설정
                 fy_img = cv2.resize(fy_img, dsize=None, fx=0.05, fy=0.05, interpolation=cv2.INTER_NEAREST)
+
                 # 작게 만들었던 이미지를 다시 원본 크기로 늘려줌
+                # dsize: 축소 전의 원래 사이즈로 지정 (확대 후 사이즈. tuple(w,h))
+                # interpolation : 보간법 지정
                 fy_img = cv2.resize(fy_img, dsize=(x2 - x1, y2 - y1), interpolation=cv2.INTER_NEAREST)
 
                 # 모자이크 처리된 이미지를 원본 이미지의 손 부분에 다시 붙여줌
@@ -102,7 +108,7 @@ while cap.isOpened():
                 # cv2.rectangle(img, pt1=(x1, y1), pt2 = (x2, y2), color=255, thickness=2)
 
                 # FY 텍스트 띄우기
-               # cv2.putText(img, text=gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)),
+                # cv2.putText(img, text=gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)),
                 #             fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255,255,255), thickness=2)
 
             # 손가락 마디마디에 landmark 그리기
@@ -112,5 +118,5 @@ while cap.isOpened():
     if cv2.waitKey(1) == ord('q'):
         break
 
-    # 결과 이미지 저장
-    cv2.imwrite("output/output_fy_filter.jpg", img[:])
+    # # 결과 이미지 저장
+    # cv2.imwrite("output/output_fy_filter.jpg", img[:])
