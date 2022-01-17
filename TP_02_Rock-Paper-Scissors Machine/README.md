@@ -5,6 +5,18 @@ AI fingers gesture detection with MediaPipe and KNN
 ### Goal
 MediaPipe hands 모델을 사용해서 가위바위보 기계 만들기
 
+### Dependency
+1. Python 3
+2. OpenCV: Webcam control
+3. MediaPipe
+
+### Model
+KNN(K-Nearest Neighbors)
+
+### Data
+1. 제스처 학습 데이터셋 (gesture_train.csv)
+2. 인식이 잘 안되는 제스처를 추가한 데이터셋 (gesture_train_scissors.csv)
+
 ### Run
 - 1개의 손(제스처) 인식  
   Recognize single finger's gesture
@@ -20,18 +32,6 @@ Recognize dual finger's gesture and determine the winner
     ```
     gather_dataset.py
     ```
-
-### Dependency
-1. Python 3
-2. OpenCV: Webcam control
-3. MediaPipe
-
-### Model
-KNN(K-Nearest Neighbors)
-
-### Data
-1. 제스처 학습 데이터셋 (gesture_train.csv)
-2. 인식이 잘 안되는 제스처를 추가한 데이터셋 (gesture_train_scissors.csv)
 
 ### Study
 - 작동 원리
@@ -53,7 +53,7 @@ KNN(K-Nearest Neighbors)
 1. label=2의 제스처(two)가 잘 인식되지 않음. 학습을 더 시켜서 성능향상시키기  
    -> `gather_dataset.py`를 실행시켜서 lebel이 2인 제스처 데이터셋 추가  
    -> `gesture_train_scissors.csv`에 저장하고, 이 데이터로 학습하는 `single.py`, `dual.py` 코드실행  
-   -> 인식 정확도 향상된 것을 확인 😊
+   -> 인식 정확도 개선된 것을 확인 😊
 
 ### Reference
 1. [`빵형의 개발도상국`님의 유튜브 영상](https://www.youtube.com/watch?v=udeQhZHx-00)

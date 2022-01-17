@@ -5,20 +5,6 @@ Mosaic the middle finger in video.
 ### Goal
 영상에서 가운데 손가락 모자이크하기
 
-### Run
-- fxck you 제스처(label=11)의 학습 데이터셋 추가
-    ```
-    gather_dataset.py
-    ```
-- fxck you 제스처를 인식해서 모자이크처리
-    ```
-    fy_filter.py
-    ```
-- 손하트 제스처를 인식해서 텍스트와 바운딩박스 표시
-    ```
-    heart_filter.py
-    ```
-
 ### Dependency
 1. Python 3
 2. OpenCV
@@ -28,15 +14,33 @@ Mosaic the middle finger in video.
 KNN(K-Nearest Neighbors)
 
 ### Data
-1. 제스처 학습 데이터 (gesture_train.csv)
-2. fxck you 제스처 데이터가 추가된 데이터셋 (gesture_train_fy.csv)
-3. 손하트 제스처 데이터가 추가된 데이터셋 (gesture_train_heart.csv)
+1. 제스처 학습 데이터 `data/gesture_train.csv`
+2. fxck you 제스처 데이터가 추가된 데이터셋 `data/gesture_train_fy.csv`
+3. 손하트 제스처 데이터가 추가된 데이터셋 `data/gesture_train_heart.csv`
+
+### Run & Result
+- fxck you 제스처(label=11)의 학습 데이터셋 추가
+    ```
+    gather_dataset.py
+    ```
+- fxck you 제스처를 인식해서 모자이크처리 => `output_fy_filter.jpg`
+    ```
+    fy_filter.py
+    ```
+- 손하트 제스처(label=12)의 학습 데이터셋 추가
+    ```
+    gather_heart.py
+    ```
+- 손하트 제스처를 인식해서 텍스트와 바운딩박스 표시 => `output_fy_filter.jpg`
+    ```
+    heart_filter.py
+    ```
 
 ### Study
 [사각형 그리기](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=pk3152&logNo=221442217481)
-`cv2.rectanble`
+`cv2.rectangle`
 
-![img_1.png](img_1.png)
+![img_1.png](data/img_1.png)
 
 
 ### Level up
