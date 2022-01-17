@@ -1,7 +1,3 @@
-# 분류기 無
-# 얼굴영역 + landmark 有 (dlib) -> 얼굴 3개 모두 표시
-# 라이언 얼굴 입히기 -> 얼굴 1개만 표시되는 듯...?
-
 import cv2, dlib, sys
 import numpy as np
 
@@ -17,7 +13,7 @@ detector = dlib.get_frontal_face_detector()
 # shape_predictor_68_face_landmarks.dat 모델 파일을 다운받아서 사용
 predictor = dlib.shape_predictor('samples/shape_predictor_68_face_landmarks.dat')
 
-# 비디오 불러오기 🎞
+# 1. 비디오 불러오기 🎞
 cap = cv2.VideoCapture('samples/faces.mp4')
 
 # 2. 내 얼굴로 테스트 😀

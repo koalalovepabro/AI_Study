@@ -1,5 +1,3 @@
-# 얼굴영역 + landmark68 (dlib), 라이언 얼굴 입히기 -> 얼굴 1개만 인식
-
 import cv2, dlib
 import numpy as np
 
@@ -15,10 +13,11 @@ detector = dlib.get_frontal_face_detector()
 # shape_predictor_68_face_landmarks.dat 모델 파일을 다운받아서 사용
 predictor = dlib.shape_predictor('samples/shape_predictor_68_face_landmarks.dat')
 
-# 비디오 불러오기
+# 1. 비디오 불러오기 🎞
 # 파일이름대신 0을 넣으면 웹캠이 켜지고 본인 얼굴로 테스트 가능함
 cap = cv2.VideoCapture('samples/faces.mp4')
-# 내 얼굴로 테스트
+
+# 2. 내 얼굴로 테스트 😀
 # cap = cv2.VideoCapture(0)
 
 # 동영상의 현재 프레임 초기화

@@ -1,6 +1,3 @@
-# 분류기 有 (cv2.CascadeClassifier)
-# cam으로 실시간 내 얼굴 영역, 눈 영역 표시하기
-
 import numpy as np
 import cv2
 
@@ -26,7 +23,6 @@ while True:
 
         for (ex, ey, ew, eh) in eyes:
             cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0,255,0), 5)  # green
-
 
     cv2.imshow('frame', frame)
 
