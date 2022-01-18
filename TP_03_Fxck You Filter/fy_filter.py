@@ -30,6 +30,10 @@ knn.train(angle, cv2.ml.ROW_SAMPLE, label)  # angle, label 데이터를 가지�
 # 웹캠의 이미지 읽어오기
 cap = cv2.VideoCapture(0)
 
+# 카메라 프레임 사이즈 셋팅
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+
 while cap.isOpened():
     ret, img = cap.read()  # 웹캠에서 프레임 하나씩 읽어옴
     if not ret:            # 읽어오지 못했다면 (False)
@@ -87,6 +91,13 @@ while cap.isOpened():
                 # 손 landmark의 사각형 바운딩박스 구하기
                 x1, y1 = tuple((joint.min(axis=0)[:2] * [img.shape[1], img.shape[0]] * 0.95).astype(int))  # 좌측 width, 위쪽 height 키우기
                 x2, y2 = tuple((joint.max(axis=0)[:2] * [img.shape[1], img.shape[0]] * 1.05).astype(int))  # 우측 width, 아랫쪽 height 키우기
+
+                # 손이 카메라 범위를 벗어나도 프로그램 종료되지 않도록
+                # 카메라 프레임 범위를 벗어나는 프레임을 줄여줌
+                y1 = 0 if y1 < 0 else y1
+                y2 = 479 if y2 > 479 else y2
+                x1 = 0 if x1 < 0 else x1
+                x2 = 639 if x2 > 639 else x2
 
                 # 사각형 영역을 잘라서 fy_img에 복사
                 fy_img = img[y1:y2, x1:x2].copy()
