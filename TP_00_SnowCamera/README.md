@@ -26,26 +26,26 @@ detect 68 face landmarks in Real-time
     ver01.py
     ```
 - 분류기 사용 (cv2.CascadeClassifier)
-- 실시간으로 웹캠의 내 얼굴 영역, 눈 영역을 바운딩박스로 표시 => [`frame_2.jpg`]
+- 실시간으로 웹캠의 내 얼굴 영역, 눈 영역을 바운딩박스로 표시 => [`frame_2.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_00_SnowCamera/output/frame_2.jpg)
     ```
     ver02.py
     ```
 - 분류기 사용 (cv2.CascadeClassifier)
-- 얼굴영역 바운딩박스 + 68개 landmark (얼굴 3개 인식) => `img_3.jpg`
-- 라이언 얼굴 입히기 (얼굴 1개 인식) => `result_3.jpg`
+- 얼굴영역 바운딩박스 + 68개 landmark (얼굴 3개 인식) => [`img_3.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_00_SnowCamera/output/img_3.jpg)
+- 라이언 얼굴 입히기 (얼굴 1개 인식) => [`result_3.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_00_SnowCamera/output/result_3.jpg)
     ```
     ver03.py
     ```
 - 분류기 사용안함
-- 얼굴영역 바운딩박스 + 68개 landmark 有 (얼굴 3개 인식) => `img_4.jpg`
-- 라이언 얼굴 입히기 (얼굴 1개만 표시되는 듯...?) => `result_4.jpg`
+- 얼굴영역 바운딩박스 + 68개 landmark 有 (얼굴 3개 인식) => [`img_4.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_00_SnowCamera/output/img_4.jpg)
+- 라이언 얼굴 입히기 (얼굴 1개만 표시되는 듯...?) => [`result_4.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_00_SnowCamera/output/result_4.jpg)
 
     ```
     ver04.py
     ```
 - 분류기 사용안함
-- 얼굴영역 바운딩박스 + 68개 landmark 有 + **코 최상단과 턱 최하단을 선으로 그리기** (얼굴 3개 인식) => `img_5.jpg`
-- 라이언 얼굴 입히기 + **얼굴 각도에 따라 회전** (얼굴 1개만 표시되는 듯...?) => `result_5.jpg`
+- 얼굴영역 바운딩박스 + 68개 landmark 有 + **코 최상단과 턱 최하단을 선으로 그리기** (얼굴 3개 인식) => [`img_5.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_00_SnowCamera/output/img_5.jpg)
+- 라이언 얼굴 입히기 + **얼굴 각도에 따라 회전** (얼굴 1개만 표시되는 듯...?) => [`result_5.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_00_SnowCamera/output/result_5.jpg)
 
     ```
     ver05.py
@@ -100,9 +100,9 @@ detect 68 face landmarks in Real-time
          ...
      ```  
    - 바운딩박스와 landmark는 동시적용 OK (`ver04.py`)  
-   - <i>layover 이미지를 동시에 띄우는건 시도 中</i>
+   - <u>layover 이미지를 동시에 띄우는건 시도 中</u>
 
-4. <i>결과물을 gif 움짤로 저장하는 방법?</i>
+4. <u>결과물을 gif 움짤로 저장하는 방법?</u>
 
 ### Reference
 1. [`빵형의 개발도상국`님의 유튜브 영상](https://www.youtube.com/watch?v=tpWVyJqehG4&t=2s)
