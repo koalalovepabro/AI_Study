@@ -5,7 +5,7 @@ import numpy as np
 
 # 동영상 사이즈를 20%로 축소하기위한 변수
 # cam(내얼굴)으로 테스트 할때에는 scaler값을 0.4이상으로 줘야 인식가능
-scaler = 0.5
+scaler = 0.2
 
 # 얼굴 인식 모듈 초기화
 detector = dlib.get_frontal_face_detector()
