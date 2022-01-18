@@ -53,7 +53,7 @@ Recognize dual finger's gesture and determine the winner
 1. label=2의 제스처(two)가 잘 인식되지 않음. 학습을 더 시켜서 성능향상시키기  
    -> `gather_dataset.py`를 실행시켜서 lebel이 2인 제스처 데이터셋 추가  
    -> `gesture_train_scissors.csv`에 저장하고, 이 데이터로 학습하는 `single.py`, `dual.py` 코드실행  
-   -> 인식 정확도 개선된 것을 확인 😊
+   -> 인식 정확도 개선된 것을 확인 [😊](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_02_Rock-Paper-Scissors%20Machine/output/output_dual.jpg)
 
 ### Reference
 1. [`빵형의 개발도상국`님의 유튜브 영상](https://www.youtube.com/watch?v=udeQhZHx-00)

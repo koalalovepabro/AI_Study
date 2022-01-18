@@ -102,7 +102,7 @@ KNN(K-Nearest Neighbors)
 1. 손하트 제스처 인식  
    -> `gather_heart.py`를 실행시켜서 손하트 제스처 데이터셋 추가  
    -> `gesture_train_heart.csv`에 저장하고, 이 데이터로 학습하는 `heart_filter.py` 코드실행  
-   -> 손하트 제스처 인식되는것을 확인 💗
+   -> 손하트 제스처 인식되는것을 확인 [💗](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_03_Fxck%20You%20Filter/output/output_heart_filter.jpg)
 
 ### Reference
 1. [`빵형의 개발도상국`님의 유튜브 영상](https://www.youtube.com/watch?v=tQeuPrX821w&list=PL-xmlFOn6TUJ9KjFo0VsM3BI9yrCxTnAz)
