@@ -17,13 +17,13 @@ KNN(K-Nearest Neighbors)
 1. 제스처 학습 데이터셋 (gesture_train.csv)
 2. 인식이 잘 안되는 제스처를 추가한 데이터셋 (gesture_train_scissors.csv)
 
-### Run
-- 1개의 손(제스처) 인식  
+### Run & Result
+- 1개의 손(제스처) 인식 => [`output_single.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_02_Rock-Paper-Scissors%20Machine/output/output_single.jpg)  
   Recognize single finger's gesture
     ```
     single.py
     ```
-- 2개의 손을 인식해서 승자를 결정  
+- 2개의 손을 인식해서 승자를 결정 => [`output_dual.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_02_Rock-Paper-Scissors%20Machine/output/output_dual.jpg)  
 Recognize dual finger's gesture and determine the winner
     ```
     dual.py

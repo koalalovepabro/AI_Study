@@ -23,7 +23,7 @@ KNN(K-Nearest Neighbors)
     ```
     gather_dataset.py
     ```
-- fxck you 제스처를 인식해서 모자이크처리 => `output_fy_filter.jpg`
+- fxck you 제스처를 인식해서 모자이크처리 => [`output_fy_filter.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_03_Fxck%20You%20Filter/output/output_fy_filter.jpg)
     ```
     fy_filter.py
     ```
@@ -31,7 +31,7 @@ KNN(K-Nearest Neighbors)
     ```
     gather_heart.py
     ```
-- 손하트 제스처를 인식해서 텍스트와 바운딩박스 표시 => `output_fy_filter.jpg`
+- 손하트 제스처를 인식해서 텍스트와 바운딩박스 표시 => [`output_heart_filter.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_03_Fxck%20You%20Filter/output/output_heart_filter.jpg)
     ```
     heart_filter.py
     ```
