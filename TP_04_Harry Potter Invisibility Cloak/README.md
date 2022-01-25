@@ -61,7 +61,7 @@ main.py
     |**S**<br>(Saturation, 채도)|0 – 255|0에 가까울수록 white, 255에 가까울 수록 H의 색상이 됨|
     |**V**<br>(Value(Brightness), 밝기)|0 – 255|0에 가까울수록 black, 255에 가까울 수록 H의 색상이 됨|
 
-- HSV color map
+- HSV color map  
 ![img_3.png](data/img_3.png) 
   - **Red** falls between 0–60 degrees.  
   - **Yellow** falls between 61–120 degrees.  
