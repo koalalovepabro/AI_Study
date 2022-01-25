@@ -19,8 +19,9 @@ for i in range(60):
     ret, background = cap.read()
 
 # 결과 video 저장
-# cv2.VideoWriter(filename, fourcc, fps, frameSize, isColor=None) -> retval
 '''
+cv2.VideoWriter(filename, fourcc, fps, frameSize, isColor=None) -> retval
+
 ***** parameters *****
 filename   : 비디오 파일명
 fourcc     : 코덱정보
