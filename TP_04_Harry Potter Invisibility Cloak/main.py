@@ -13,7 +13,7 @@ args = parser.parse_args()
 cap = cv2.VideoCapture(args.video if args.video else 0)
 time.sleep(3)  # 웹캠이 켜지기까지 잠깐 멈춰서 기다리기
 
-# 비디오 앞부분에 사람이 나오지 않은 배경이 꼭 필요함
+# 비디오 앞부분에 사람이 나오지 않은 배경이 꼭 필요함 (60프레임 캡쳐)
 # Grap background image from first part of the video
 for i in range(60):
     ret, background = cap.read()
@@ -31,15 +31,15 @@ isColor    : 컬러 True(기본값)/아니면False)
 retval     : cv2.VideoWriter 객체. 성공하면 True, 실패하면 False
 '''
 # fourcc (Four Character Code. 4-문자코드): 동영상 파일의 코덱, 압축방식, 색상, 픽셀 포맷 등을 정의하는 정수 값
-fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')               # video이기 때문에, MPV4로 코덱셋팅
+fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')               # video이기 때문에, MP4V로 코덱셋팅
 
 # 저장1. 투명망토 적용 이미지
 out = cv2.VideoWriter('output/output.mp4', fourcc,
-                      cap.get(cv2.CAP_PROP_FPS),                  # 영상 FPS(Frame Per Second)
+                      cap.get(cv2.CAP_PROP_FPS),                   # 영상 FPS(Frame Per Second)
                       (background.shape[1], background.shape[0]))  # 프레임크기는 background와 같은 사이즈로 설정
 # 저장2. 웹캠상 이미지
 out2 = cv2.VideoWriter('output/original.mp4', fourcc,
-                       cap.get(cv2.CAP_PROP_FPS),
+                       cap.get(cv2.CAP_PROP_FPS),                  # 카메라 프레임 수를 가져오는 메소드
                        (background.shape[1], background.shape[0]))
 
 while (cap.isOpened()):
@@ -109,13 +109,13 @@ while (cap.isOpened()):
 
     if cv2.waitKey(1) == ord('q'):
         break
-
-    # 결과를 이미지로 저장
-    cv2.imwrite("output/original.jpg", img[:])               # 웹캠 원본 이미지
-    cv2.imwrite("output/mask_cloack.jpg", mask_cloak[:])     # mask_cloack  (특정컬러만 뽑아서 흰색으로 표시한 것)
-    cv2.imwrite("output/res1.jpg", res1[:])                  # res1         (background에서 망토영역만큼만 뽑은 것)
-    cv2.imwrite("output/res2.jpg", res2[:])                  # res2         (웹캠상 이미지에서 망토영역 제외한 것)
-    cv2.imwrite("output/result.jpg", result[:])              # result       (투명망토 적용한 결과 이미지)
+    #
+    # # 결과를 이미지로 저장
+    # cv2.imwrite("output/original.jpg", img[:])               # 웹캠 원본 이미지
+    # cv2.imwrite("output/mask_cloack.jpg", mask_cloak[:])     # mask_cloack  (특정컬러만 뽑아서 흰색으로 표시한 것)
+    # cv2.imwrite("output/res1.jpg", res1[:])                  # res1         (background에서 망토영역만큼만 뽑은 것)
+    # cv2.imwrite("output/res2.jpg", res2[:])                  # res2         (웹캠상 이미지에서 망토영역 제외한 것)
+    # cv2.imwrite("output/result.jpg", result[:])              # result       (투명망토 적용한 결과 이미지)
 
 out.release()
 out2.release()
