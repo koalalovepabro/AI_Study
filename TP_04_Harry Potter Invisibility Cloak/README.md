@@ -9,14 +9,25 @@ Make Invisibility cloak using OpenCV
 1. Python 3
 2. OpenCV
 3. Numpy
+4. MediaPipe
 
 ### Run
-빨간색 컬러의 영역을 마스킹해서 그 영역만 투명하게 처리
+빨간색 컬러의 영역을 마스킹해서 그 영역만 투명하게 처리  => [`result.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_04_Harry%20Potter%20Invisibility%20Cloak/output/result.jpg)
 ```python
 main.py
 ```
+투명인간 만들기 => [`result_levelup01.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_04_Harry%20Potter%20Invisibility%20Cloak/output/result_levelup_01.jpg)
+```python
+levelup_01.py
+```
+손으로 하트 제스처를 취했을때만 투명인간 만들기  => [`result_levelup02.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_04_Harry%20Potter%20Invisibility%20Cloak/output/result_levelup_02.jpg)
+```python
+levelup_02.py
+```
 
 ### Result
+`main.py` 실행 결과 이미지
+
 |속성|이미지 파일명|
 |:---|:---|
 |웹캠 원본 이미지|[`original.jpg`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_04_Harry%20Potter%20Invisibility%20Cloak/output/original.jpg)|
@@ -102,9 +113,21 @@ main.py
    ```python
     result = cv2.addWeighted(src1=res1, alpha=1, src2=res2, beta=1, gamma=0)
     ```
+6. [MediaPipe의 selfie_segmentation 솔루션](https://google.github.io/mediapipe/solutions/selfie_segmentation.html#models)  
+    쉽게 배경을 분리시킬 수 있음
 
 ### Level up
+1. 투명인간 만들기 ! ([`levelup_01.py`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_04_Harry%20Potter%20Invisibility%20Cloak/levelup_01.py))  
+   -> MediaPipe의 selfie_segmentation 솔루션을 사용하여 배경분리  
+   -> 사람영역(배경이 아닌 영역)을 masking  
+   -> masking 한 부분에 background 이미지 합성  
+   -> 웹캠상 내 모습이 투명인간으로 변한 것을 확인 [💜](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_04_Harry%20Potter%20Invisibility%20Cloak/output/result_levelup_01.jpg) <br><br>
 
+2. 특정 제스처를 취했을 때에만 투명인간으로 만들기! ([`levelup_02.py`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_04_Harry%20Potter%20Invisibility%20Cloak/levelup_02.py))  
+   -> MediaPipe의 Hands 솔루션과 knn 학습을 통해 손 제스처 인식  
+   -> MediaPipe의 selfie_segmentation 솔루션을 사용하여 배경분리  
+   -> 손으로 하트 제스처를 취했을때만 사람영역(배경이 아닌 영역)을 masking 하고 background 이미지 합성  
+   -> 웹캠상 내 모습이 투명인간으로 변한 것을 확인 [💗](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_04_Harry%20Potter%20Invisibility%20Cloak/output/result_levelup_02.jpg) <br>
 
 ### Reference
 1. [`빵형의 개발도상국`님의 유튜브 영상](https://www.youtube.com/watch?v=suytB_6aS6M)
