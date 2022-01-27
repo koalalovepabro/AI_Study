@@ -9,7 +9,8 @@
 [가운데 손가락 모자이크처리하기 🖕🏻](https://github.com/koalalovepabro/KaggleStudy/tree/master/TP_03_Fxck%20You%20Filter)
 #### 3회차 (22.01.25)
 [해리포터 투명망토 만들기 🧙](https://github.com/koalalovepabro/KaggleStudy/tree/master/TP_04_Harry%20Potter%20Invisibility%20Cloak)
-
+#### 4회차 (22.02.08)
+[마스크 착용여부 판단하기 😷](https://www.youtube.com/watch?v=ncIyy1doSJ8)
 
 ### Reference
 유튜브채널 `빵형의 개발도상국`  
