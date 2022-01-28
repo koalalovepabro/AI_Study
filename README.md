@@ -10,7 +10,7 @@
 #### 3회차 (22.01.25)
 [해리포터 투명망토 만들기 🧙](https://github.com/koalalovepabro/KaggleStudy/tree/master/TP_04_Harry%20Potter%20Invisibility%20Cloak)
 #### 4회차 (22.02.08)
-[삼성전자 주식, 이더리움 시세예측 💰](https://www.youtube.com/watch?v=sG_WeGbZ9A4&t=35s)
+[삼성전자 주식, 이더리움 시세예측 📈💰](https://www.youtube.com/watch?v=sG_WeGbZ9A4&t=35s)
 
 ### Reference
 유튜브채널 `빵형의 개발도상국`  
