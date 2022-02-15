@@ -12,7 +12,7 @@
 #### 4회차 (22.02.08)
 [삼성전자 주식, 비트코인 시세예측 📈💰](https://github.com/koalalovepabro/KaggleStudy/tree/master/TP_05_Stock%20Price%20and%20BTC%20Predictioin)
 #### 5회차 (22.02.15)
-[마스크 썼는지 안썼는지 알아내기 😷](https://www.youtube.com/watch?v=ncIyy1doSJ8&t=503s)
+[마스크 썼는지 안썼는지 알아내기 😷](https://github.com/koalalovepabro/KaggleStudy/tree/master/TP_06_COVID-19%20Face%20Mask%20Detection)
 
 ### Reference
 유튜브채널 `빵형의 개발도상국`  
