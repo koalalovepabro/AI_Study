@@ -20,11 +20,11 @@ MobileNetV2
 
 
 ### Run & Result
-- Image 넣어서 예측  => [`output_img3.png`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_05_Stock%20Price%20and%20BTC%20Predictioin/stock.ipynb)
+- Image 넣어서 예측  => [`output_img3.png`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_06_COVID-19%20Face%20Mask%20Detection/result/output_img3.png)
     ```
     image.ipynb
     ```
-- Video 또는 웹캠 화면상에서 예측  => [`output_img2`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_05_Stock%20Price%20and%20BTC%20Predictioin/stock.ipynb)
+- Video 또는 웹캠 화면상에서 예측  => [`output_img2`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_06_COVID-19%20Face%20Mask%20Detection/result/output_img2.jpg)
     ```
     video.py
     ```
