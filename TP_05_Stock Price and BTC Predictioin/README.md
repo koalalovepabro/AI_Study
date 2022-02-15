@@ -1,4 +1,5 @@
 # Stock and BTC Price Prediction
+stock and crypto price prediction using LSTM
 
 ---
 ### Goal
