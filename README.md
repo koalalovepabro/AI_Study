@@ -10,7 +10,7 @@
 #### 3회차 (22.01.25)
 [해리포터 투명망토 만들기 🧙](https://github.com/koalalovepabro/KaggleStudy/tree/master/TP_04_Harry%20Potter%20Invisibility%20Cloak)
 #### 4회차 (22.02.08)
-[삼성전자 주식, 이더리움 시세예측 📈💰](https://github.com/koalalovepabro/KaggleStudy/tree/master/TP_05_Stock%20Price%20and%20BTC%20Predictioin)
+[삼성전자 주식, 비트코인 시세예측 📈💰](https://github.com/koalalovepabro/KaggleStudy/tree/master/TP_05_Stock%20Price%20and%20BTC%20Predictioin)
 #### 5회차 (22.02.15)
 [마스크 썼는지 안썼는지 알아내기 😷](https://www.youtube.com/watch?v=ncIyy1doSJ8&t=503s)
 
