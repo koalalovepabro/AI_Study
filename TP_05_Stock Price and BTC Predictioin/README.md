@@ -18,7 +18,7 @@ LSTM(Long Short Term Memory)
 
 ### Dataset
 1. [Yahoo Finance](https://finance.yahoo.com/)
-2. [CoinMarketCap](https://coinmarketcap.com/)
+2. [Upbit](https://upbit.com/home)
 
 ### Run & Result
 - 내일의 주가 예측  => [`stock.ipynb`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_05_Stock%20Price%20and%20BTC%20Predictioin/stock.ipynb)
@@ -35,7 +35,7 @@ LSTM(Long Short Term Memory)
    이전 데이터를 가지고 이후의 데이터를 예측하는 인공지능 모델
 
 ### Level up
-1. 데이터 수집 방식  
+1. 데이터 수집 방법  
   yfinance와 pyupbit를 사용하여 주가데이터와 코인 시세 데이터를 쉽고 정확하게 불러올 수 있다.<br>  
    **삼성전자 주가데이터 수집**
    ```python
@@ -79,6 +79,20 @@ LSTM(Long Short Term Memory)
     pyupbit.get_ohlcv(ticker=ticker, interval=interval, to=to, count=count)
    ```
 
+2. 모델평가방법
+
+    **1) MSE (Mean Squared Error)**  
+    예측값과 실제값의 차이인 오차들의 제곱 평균<br><br>
+    
+    **2) R2 score**  
+    분산기반 예측 성능 평가.  
+    MAE, MSE와 같은 지표들은 데이터의 scale에 따라 값이 다르지만, R2은 상대적인 성능이 어느정도인지 직관적으로 판단할 수 있음.<br><br>
+
+    **3) RMSE (Root Mean Squared Error)**  
+    모델의 예측값과 실제 환경에서 관찰되는 값의 차이를 다룰 때 흔히 사용하는 평가방법<br><br>
+    
+    **4) 소요시간**  
+    학습부터 예측까지 소요되는 시간
 ### Reference
 1. [`빵형의 개발도상국`님의 유튜브 영상](https://www.youtube.com/watch?v=sG_WeGbZ9A4&t=35s)
 2. [`kairess`님의 github](https://github.com/kairess/stock_crypto_price_prediction.git)
