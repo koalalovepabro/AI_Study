@@ -8,7 +8,7 @@ LSTM으로 삼성전자 주식, 비트코인 가격 예측하기
 1. Python 3
 2. Numpy : 행렬연산
 3. Keras :  딥러닝 모델 작성
-4. pandas : csv 파일 로드
+4. pandas : 데이터프레임 생성
 5. matplotlib : 데이터 시각화
 6. yfinance : yahoo finance에서 주식 종목별 ohlcv 데이터 수집
 7. pyupbit : 업비트에 상장된 코인의 ohlcv 데이터 수집
@@ -21,11 +21,11 @@ LSTM(Long Short Term Memory)
 2. [CoinMarketCap](https://coinmarketcap.com/)
 
 ### Run & Result
-- 내일의 주가 예측  => 
+- 내일의 주가 예측  => [`stock.ipynb`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_05_Stock%20Price%20and%20BTC%20Predictioin/stock.ipynb)
     ```
     stock.ipynb
     ```
-- 내일의 코인 시세 예측 =>
+- 내일의 코인 시세 예측 => [`crypto.ipynb`](https://github.com/koalalovepabro/KaggleStudy/blob/master/TP_05_Stock%20Price%20and%20BTC%20Predictioin/crypto.ipynb)
     ```
     crypto.ipynb
     ```
