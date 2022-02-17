@@ -1,0 +1,9 @@
+# custom
+/**/*.mp4
+/**/*.dat
+
+/**/*test.py
+
+.idea/
+.ipynb_checkpoints/
+venv/
