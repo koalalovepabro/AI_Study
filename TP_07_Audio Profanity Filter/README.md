@@ -19,7 +19,7 @@ STT(Speech-To-Text)
 욕설이 담긴 mp3 음원파일
 
 ### Run & Result
-'fuck'이 나올 때 자동으로 삐- 처리 => [`result_fuck.mp3`]()
+'fuck'이 나올 때 자동으로 삐- 처리
 ```python
 main.ipynb
 ```
@@ -50,8 +50,6 @@ main.ipynb
        ```python
         mixed_final.export('result/result_fxck.mp3', format='mp3')
        ```
-   
-
    
 4. [DeepSpeech](https://github.com/mozilla/DeepSpeech.git)  
    [docs](https://deepspeech.readthedocs.io/en/r0.9/?badge=latest)  
