@@ -1,6 +1,13 @@
 # custom
 /**/*.mp4
+/**/*.mp3
 /**/*.dat
+.DS_Store
+__pycache__
+
+.json
+.exe
+.mp3
 
 /**/*test.py
 
