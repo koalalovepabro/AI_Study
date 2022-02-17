@@ -13,7 +13,8 @@
 [삼성전자 주식, 비트코인 시세예측 📈💰](https://github.com/koalalovepabro/KaggleStudy/tree/master/TP_05_Stock%20Price%20and%20BTC%20Predictioin)
 #### 5회차 (22.02.15)
 [마스크 썼는지 안썼는지 알아내기 😷](https://github.com/koalalovepabro/KaggleStudy/tree/master/TP_06_COVID-19%20Face%20Mask%20Detection)
-
+#### 6회차 (22.02.22)
+[삐- 자동 욕설 필터링 프로그램 만들기 🤬](https://github.com/koalalovepabro/KaggleStudy/tree/master/TP_07_Audio%20Profanity%20Filter)
 ### Reference
 유튜브채널 `빵형의 개발도상국`  
 (각 프로젝트의 directory 내에 상세 링크 첨부함)
