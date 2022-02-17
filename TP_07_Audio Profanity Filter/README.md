@@ -35,7 +35,7 @@ main.ipynb
     [STT 빠르게 시작하기](https://cloud.google.com/speech-to-text/docs/transcribe-client-libraries)  
     [STT docs(짧은 오디오 파일을 텍스트로 변환)](https://cloud.google.com/speech-to-text/docs/sync-recognize) <br><br> 
 
-3. [pydub](https://github.com/jiaaro/pydub)  
+3. [pydub](https://github.com/jiaaro/pydub)
    - [docs](https://github.com/jiaaro/pydub/blob/master/API.markdown)
    - 쉽게 오디오를 조작할 수 있는 API
    - `AudioSegment.overlay()` : 오디오 위에 다른 오디오를 입히는 기능
@@ -52,8 +52,8 @@ main.ipynb
        ```
    
 4. [DeepSpeech](https://github.com/mozilla/DeepSpeech.git)  
-   [docs](https://deepspeech.readthedocs.io/en/r0.9/?badge=latest)  
-    - [Baidu의 Deep Speech 연구 논문](https://arxiv.org/abs/1412.5567) 기반의 머신러닝 기법에 의해 훈련된 모델을 사용하는 오픈 소스 STT 엔진
+   - [docs](https://deepspeech.readthedocs.io/en/r0.9/?badge=latest)  
+   - [Baidu의 Deep Speech 연구 논문](https://arxiv.org/abs/1412.5567) 기반의 머신러닝 기법에 의해 훈련된 모델을 사용하는 오픈 소스 STT 엔진
     
 
 ### Level Up
