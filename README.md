@@ -1,4 +1,4 @@
-# Kaggle Study🎆
+# AI Study🎆
 ### 2022.01 ~ Toy Project @Kaggle Playground
 
 #### 1회차 (22.01.11)
